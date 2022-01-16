@@ -1,12 +1,5 @@
 printf '\033c'
-echo "Welcome to Debian setup Script"
-echo "Testing internet connection "
-ping -c 3 lukesmith.xyz
-read -p "Did you setup and install doas? [y/n]" answer
-if [[ $answer = y ]] ; then
-  echo "Installing the required packages"
-  doas apt install libx11-dev libxft-dev xinit libxinerama-dev build-essential git bspwm sxhkd picom rxvt-unicode alsa-utils vim feh
-  echo "Setting up startx"
+echo "Welcome to Debian setup Script" && echo "Testing internet connection " && ping -c 3 lukesmith.xyz && read -p "Did you setup and install doas? [y/n]" answer ; if [[ $answer = y ]] ; then echo "Installing the required packages" && doas apt install libx11-dev libxft-dev xinit libxinerama-dev build-essential git bspwm sxhkd picom rxvt-unicode alsa-utils vim feh && echo "Setting up startx"
   touch "exec bspwm" >> /.xinitrc
   echo "Setting up the config folder"
   mkdir .config
@@ -37,7 +30,7 @@ if [[ $answer = y ]] ; then
   doas dpkg -i fonts-inconsolata_001.010-6_all.deb
   cd
   cp Downloads/Dotfiles/urxvt .config
-  echo "We are done witckless.org/dmenu
+  echo "We are done witckless.org/dmenu"
   cd dmenu/
   sudo make clean install
   cd ..
