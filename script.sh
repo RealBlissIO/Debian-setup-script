@@ -12,12 +12,23 @@ if [[ $answer = y ]] ; then
   mkdir .config/sxhkd
   cp /usr/share/doc/bspwm/examples/bspwmrc .config/bspwm/
   cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd/
-  
+  echo "setting up dmenu"
+  mkdir Downloads
+  cd Downloads/
+  git clone https://git.suckless.org/dmenu
+  cd dmenu/
+  sudo make clean install
+  cd ..
+  echo "Cloning Dotfiles"
+  git clone https://github.com/RealBlissIO/Dotfiles
+  cp Dotfiles/urxvt .config/
+  cp Dotfiles/.Xresources ..
   
   
   read -p "Do you want to install the brave browser? [y/n]" answer
   if [[ $answer = y ]] ; then
     echo "Installing the brave browser"
+    
     doas apt install apt-transport-https curl
 
     doas curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -29,3 +40,10 @@ if [[ $answer = y ]] ; then
     doas apt install brave-browser
   fi
 fi
+if [[ $answer = n ]] ; then
+  echo "install doas by being root using su put the password in and install the doas binary"
+  echo "then edit the /etc/doas.conf file by placing permit nameofuser as root"
+  echo "once you are done rerun this script to continue"
+  echo "Debian Installer shutting down"
+fi
+exit
