@@ -1,5 +1,7 @@
 printf '\033c'
 echo "Welcome to Debian setup Script"
+echo "Testing internet connection "
+ping -c 3 lukesmith.xyz
 read -p "Did you setup and install doas? [y/n]" answer
 if [[ $answer = y ]] ; then
   echo "Installing the required packages"
@@ -21,10 +23,13 @@ if [[ $answer = y ]] ; then
   cd ..
   echo "Cloning Dotfiles"
   git clone https://github.com/RealBlissIO/Dotfiles
-  cp Dotfiles/urxvt .config/
   cp Dotfiles/.Xresources ..
-  
-  
+  cd Dotfiles/
+  echo  "Installing the fonts and setting up urxvt"
+  doas dpkg -i fonts-inconsolata_001.010-6_all.deb
+  cd
+  cp Downloads/Dotfiles/urxvt .config
+  echo "We are done with the Dotfiles yay"
   read -p "Do you want to install the brave browser? [y/n]" answer
   if [[ $answer = y ]] ; then
     echo "Installing the brave browser"
