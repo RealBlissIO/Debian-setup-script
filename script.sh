@@ -17,7 +17,27 @@ if [[ $answer = y ]] ; then
   echo "setting up dmenu"
   mkdir Downloads
   cd Downloads/
+  git clone https://git.su
+  mkdir .config/bspwm
+  mkdir .config/sxhkd
+  cp /usr/share/doc/bspwm/examples/bspwmrc .config/bspwm/
+  cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd/
+  echo "setting up dmenu"
+  mkdir Downloads
+  cd Downloads/
   git clone https://git.suckless.org/dmenu
+  cd dmenu/
+  sudo make clean install
+  cd ..
+  echo "Cloning Dotfiles"
+  git clone https://github.com/RealBlissIO/Dotfiles
+  cp Dotfiles/.Xresources ..
+  cd Dotfiles/
+  echo  "Installing the fonts and setting up urxvt"
+  doas dpkg -i fonts-inconsolata_001.010-6_all.deb
+  cd
+  cp Downloads/Dotfiles/urxvt .config
+  echo "We are done witckless.org/dmenu
   cd dmenu/
   sudo make clean install
   cd ..
@@ -41,13 +61,13 @@ if [[ $answer = y ]] ; then
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|doas tee /etc/apt/sources.list.d/brave-browser-release.list
 
     doas apt update
-
+    
     doas apt install brave-browser
   fi
 fi
 if [[ $answer = n ]] ; then
-  echo "install doas by being root using su put the password in and install the doas binary"
-  echo "then edit the /etc/doas.conf file by placing permit nameofuser as root"
+  echo "install doas by being root using su then put the password in and install the doas binary"
+  echo "later edit the /etc/doas.conf file by placing permit nameofuser as root"
   echo "once you are done rerun this script to continue"
   echo "Debian Installer shutting down"
 fi
