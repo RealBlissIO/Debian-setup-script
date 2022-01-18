@@ -1,27 +1,36 @@
 printf '\033c'
-echo "Welcome to Debian setup Script" && echo "Testing internet connection " && ping -c 3 lukesmith.xyz && read -p "Did you setup and install doas? [y/n]" answer ; if [[ $answer = y ]] ; then echo "Installing the required packages" && doas apt install libx11-dev libxft-dev xinit libxinerama-dev build-essential git bspwm sxhkd picom rxvt-unicode alsa-utils vim feh && echo "Setting up startx"
-  touch "exec bspwm" >> /.xinitrc
+echo "Welcome to Debian setup Script" 
+echo "Testing internet connection "
+ping -c 3 lukesmith.xyz 
+read -p "Did you setup and install doas? [y/n]" answer 
+if [[ $answer = y ]] ; then 
+  echo "Installing the required packages" 
+  doas apt install libx11-dev libxft-dev xinit libxinerama-dev build-essential git bspwm sxhkd picom rxvt-unicode alsa-utils vim feh 
+  echo "Setting up startx"
+  cd
+  echo "exec bspwm" >> .xinitrc
   echo "Setting up the config folder"
   mkdir .config
   mkdir .config/bspwm
   mkdir .config/sxhkd
   cp /usr/share/doc/bspwm/examples/bspwmrc .config/bspwm/
   cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd/
-  echo "setting up dmenu"
-  mkdir Downloads
-  cd Downloads/
-  git clone https://git.su
+  echo "Setting up bspwm and sxhkd Dotfiles"
   mkdir .config/bspwm
   mkdir .config/sxhkd
   cp /usr/share/doc/bspwm/examples/bspwmrc .config/bspwm/
   cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd/
+  echo "#AutoStart" >> .config/bspwm/bspwmrc
+  echo "picom &" >> .config/bspwm/bspwmrc
+  echo "xrdb .Xresources" >> .config/bspwm/bspwmrc
+  echo "feh --bg-scale --randomize ~/Pictures/Wallpaper/*" >> .config/bspwm/bspwmrc
   echo "setting up dmenu"
   mkdir Downloads
   cd Downloads/
   git clone https://git.suckless.org/dmenu
   cd dmenu/
-  sudo make clean install
-  cd ..
+  doas make clean install
+  cd
   echo "Cloning Dotfiles"
   git clone https://github.com/RealBlissIO/Dotfiles
   cp Dotfiles/.Xresources ..
@@ -30,10 +39,6 @@ echo "Welcome to Debian setup Script" && echo "Testing internet connection " && 
   doas dpkg -i fonts-inconsolata_001.010-6_all.deb
   cd
   cp Downloads/Dotfiles/urxvt .config
-  echo "We are done witckless.org/dmenu"
-  cd dmenu/
-  sudo make clean install
-  cd ..
   echo "Cloning Dotfiles"
   git clone https://github.com/RealBlissIO/Dotfiles
   cp Dotfiles/.Xresources ..
