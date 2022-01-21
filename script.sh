@@ -23,7 +23,9 @@ if [[ $answer = y ]] ; then
   echo "#AutoStart" >> .config/bspwm/bspwmrc
   echo "picom &" >> .config/bspwm/bspwmrc
   echo "xrdb .Xresources" >> .config/bspwm/bspwmrc
-  echo "feh --bg-scale --randomize ~/Pictures/Wallpaper/*" >> .config/bspwm/bspwmrc
+  mkdir Pix
+  mkdir Pix/Wall
+  echo "feh --bg-scale --randomize ~/Pix/Wall/*" >> .config/bspwm/bspwmrc
   echo "setting up dmenu"
   mkdir Downloads
   cd Downloads/
