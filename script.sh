@@ -1,7 +1,8 @@
+#!/bin/sh
 printf '\033c'
 echo "Welcome to Debian setup Script" 
 echo "Testing internet connection "
-ping -c 3 lukesmith.xyz 
+ping -c 3 lukesmith.xyz
 read -p "Did you setup and install doas? [y/n]" answer 
 if [[ $answer = y ]] ; then 
   echo "Installing the required packages" 
