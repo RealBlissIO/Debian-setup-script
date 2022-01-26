@@ -4,11 +4,12 @@ echo "Welcome to Debian setup Script"
 echo "Testing internet connection "
 ping -c 3 lukesmith.xyz
 read -p "Did you setup and install doas? [y/n]" answer 
-if [[ $answer = y ]] ; then 
+if [[ $answer = y ]] ; then
   echo "Installing the required packages" 
   doas apt install libx11-dev libxft-dev xinit libxinerama-dev build-essential git bspwm sxhkd picom rxvt-unicode alsa-utils vim feh 
   echo "Setting up startx"
-  cd
+  cd $HOME
+  touch .xinitrc
   echo "exec bspwm" >> .xinitrc
   echo "Setting up the config folder"
   mkdir .config
