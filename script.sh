@@ -25,6 +25,9 @@ doas make clean install
 cd .. 
 cd dwm/ 
 doas make clean install
+cd ..
+cd slstatus/
+sudo make clean install
 cd $HOME
 cp .config/Dotfiles/.xinitrc .
 exit
