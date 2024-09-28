@@ -1,6 +1,6 @@
 # BlissIO's Debian Setup Script
 
-This script automates the setup process for BlissIO on Debian. It checks for internet connectivity, root access, installs necessary dependencies, and provides options to install various desktop environments/window managers.
+This script automates the setup process for me on Debian. It checks for internet connectivity, root access, installs necessary dependencies, and provides options to install various desktop environments/window managers.
 
 ## Disclaimer
 
